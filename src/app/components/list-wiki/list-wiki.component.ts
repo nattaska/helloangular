@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -13,7 +15,8 @@ export class ListwikiComponent implements OnInit {
   wikiList: AngularFireList<any>;
   wikis: any[];
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase,
+    private router: Router) { }
 
   ngOnInit() {
     this.wikiList = this.db.list('wikis');
@@ -23,6 +26,15 @@ export class ListwikiComponent implements OnInit {
     })).subscribe(items => {
       this.wikis = items;
     });
+  }
+
+  delWiki(data) {
+    console.log(data);
+    this.wikiList.remove(data.key);
+  }
+
+  editWiki(data) {
+    this.router.navigate([`/editWiki/${data.key}`]);
   }
 
 }

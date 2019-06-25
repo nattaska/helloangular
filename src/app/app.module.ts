@@ -18,8 +18,9 @@ import { ListwikiComponent } from './components/list-wiki/list-wiki.component';
 const appRoutes:Routes = [
   {path:"", component:UserComponent},
   {path:"about", component:AboutusComponent},
-  {path:"add-wiki", component:AddWikiComponent},
-  {path:"list-wiki", component:ListwikiComponent}
+  {path:"addwiki", component:AddWikiComponent},
+  {path:"editWiki/:id", component:AddWikiComponent},
+  {path:"listwiki", component:ListwikiComponent}
 ]
 
 @NgModule({
